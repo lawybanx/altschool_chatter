@@ -8,7 +8,8 @@ import { nanoid } from '@reduxjs/toolkit';
 import { uploadImage } from '../../../lib/api';
 import { setMDEValueToStore } from '../../../store/post/postData';
 import hljs from 'highlight.js';
-// import 'highlight.js/styles/atom-one-light.css';
+import javascript from 'highlight.js/lib/languages/javascript';
+
 
 const MarkdownEditor = ({
   MDEValue,
@@ -22,6 +23,8 @@ const MarkdownEditor = ({
   const [value, setValue] = useState(MDEValue || ' ');
 
   const dispatch = useDispatch();
+
+  hljs.registerLanguage('javascript', javascript);
 
   useEffect(() => {
     if (setMDEValue) {

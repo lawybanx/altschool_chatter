@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
+import firebaseConfig from '../helper/apiKeys';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
-import firebaseConfig from '../helper/apiKeys';
 
 const app = initializeApp(firebaseConfig);
 
