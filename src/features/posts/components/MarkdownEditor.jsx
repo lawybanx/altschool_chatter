@@ -8,7 +8,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { uploadImage } from '../../../lib/api';
 import { setMDEValueToStore } from '../../../store/post/postData';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
+// import 'highlight.js/styles/atom-one-light.css';
 
 const MarkdownEditor = ({
   MDEValue,
