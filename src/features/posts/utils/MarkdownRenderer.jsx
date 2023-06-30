@@ -1,7 +1,8 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
+// import 'highlight.js/styles/atom-one-light.css';
+// import javascript from 'highlight.js/lib/languages/javascript';
 import '@wcj/markdown-style';
 
 // Custom Markdown renderer component
