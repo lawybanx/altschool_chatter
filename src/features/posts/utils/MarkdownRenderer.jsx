@@ -1,11 +1,9 @@
-import { Box, 
-  // useColorModeValue 
-} from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
-// import 'highlight.js/styles/atom-one-light.css';
+import 'highlight.js/styles/atom-one-light.css';
 // import javascript from 'highlight.js/lib/languages/javascript';
-// import '@wcj/markdown-style';
+import '@wcj/markdown-style';
 
 // Custom Markdown renderer component
 const MarkdownRenderer = ({ content }) => {
@@ -24,14 +22,16 @@ const MarkdownRenderer = ({ content }) => {
     },
   });
 
+  const theme = useColorModeValue('light', 'dark');
+
   return (
-    // <markdown-style theme={useColorModeValue('light', 'dark')}>
-    //   </markdown-style>
-    <Box
-      as='div'
-      p={{ base: '1rem', md: '1.5rem' }}
-      dangerouslySetInnerHTML={{ __html: markdown.render(content) }}
-    />
+    <markdown-style theme={theme}>
+      <Box
+        as='div'
+        p={{ base: '1rem', md: '1.5rem' }}
+        dangerouslySetInnerHTML={{ __html: markdown.render(content) }}
+      />
+    </markdown-style>
   );
 };
 
