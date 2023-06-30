@@ -26,11 +26,10 @@ const MarkdownRenderer = ({ content }) => {
 
   return (
     <markdown-style theme={theme}>
-      <Box
-        as='div'
+      <div
         p={{ base: '1rem', md: '1.5rem' }}
         dangerouslySetInnerHTML={{ __html: markdown.render(content) }}
-      />
+      ></div>
     </markdown-style>
   );
 };
