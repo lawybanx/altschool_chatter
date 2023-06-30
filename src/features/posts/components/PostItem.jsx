@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { nanoid } from '@reduxjs/toolkit';
 import {
@@ -7,7 +7,6 @@ import {
   Image,
   Text,
   VStack,
-  Stack,
   Heading,
   Wrap,
   WrapItem,
@@ -46,7 +45,7 @@ const PostItem = ({
   likes,
   comments,
 }) => {
-  const [showProfilePopup, setShowProfilePopup] = useState(false);
+  // const [showProfilePopup, setShowProfilePopup] = useState(false);
 
   const navigate = useNavigate();
 
@@ -62,10 +61,10 @@ const PostItem = ({
     navigate(`/${titleRoute(username, title, id)}`);
   };
 
-  const handleProfilePopup = e => {
-    e.stopPropagation();
-    setShowProfilePopup(!showProfilePopup);
-  };
+  // const handleProfilePopup = e => {
+  //   e.stopPropagation();
+  //   setShowProfilePopup(!showProfilePopup);
+  // };
 
   const handleNavigateToProfile = (e, username) => {
     e.stopPropagation();

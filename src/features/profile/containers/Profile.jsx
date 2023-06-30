@@ -16,7 +16,7 @@ const Profile = () => {
 
   const { modifiedData } = useSelector(state => state.modifiedData);
 
-  const { profileData, profileDataLoading, profileDataErr } = useSelector(
+  const { profileData, profileDataLoading } = useSelector(
     state => state.profileData
   );
 

@@ -22,7 +22,7 @@ const Explore = () => {
   const {
     modifiedData,
     modifiedDataLoading: loading,
-    modifiedDataErr: err,
+    // modifiedDataErr: err,
   } = useSelector(state => state.modifiedData);
 
   const { profileData, profileDataLoading } = useSelector(

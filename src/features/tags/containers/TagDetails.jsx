@@ -23,7 +23,7 @@ const TagDetails = () => {
     modifiedDataErr: err,
   } = useSelector(state => state.modifiedData);
 
-  const { profileData, profileDataLoading } = useSelector(
+  const { profileData } = useSelector(
     state => state.profileData
   );
 

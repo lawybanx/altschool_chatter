@@ -19,7 +19,7 @@ const TrendingTags = () => {
   const {
     modifiedData,
     modifiedDataLoading: loading,
-    modifiedDataErr: err,
+    // modifiedDataErr: err,
   } = useSelector(state => state.modifiedData);
 
   const popularTags = getPopularTags(modifiedData);

@@ -26,9 +26,7 @@ const EditProfile = () => {
   const [loading, setLoading] = useState(false);
   const auth = getAuth();
 
-  const { profileData, profileDataLoading, profileDataErr } = useSelector(
-    state => state.profileData
-  );
+  const { profileData } = useSelector(state => state.profileData);
 
   const nameRef = useRef();
   const usernameRef = useRef();

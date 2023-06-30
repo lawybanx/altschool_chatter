@@ -11,8 +11,8 @@ const Bookmarks = () => {
 
   const {
     modifiedData,
-    modifiedDataLoading: loading,
-    modifiedDataError: err,
+    // modifiedDataLoading: loading,
+    // modifiedDataError: err,
   } = useSelector(state => state.modifiedData);
 
   const profileData = useSelector(state => state.profileData.profileData);

@@ -20,7 +20,7 @@ const TagItem = ({
   const user = useAuth();
   const userId = user?.userId;
 
-  const { followTagHandler, loading } = useFollowTag(profileData);
+  const { followTagHandler } = useFollowTag(profileData);
 
   const handleClickFollow = () => followTagHandler(tagName);
 

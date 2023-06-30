@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 import {
   Flex,
-  Heading,
-  Link,
-  Stack,
   Image,
-  Box,
   Tabs,
   Tab,
   TabList,
   TabPanel,
   TabPanels,
 } from '@chakra-ui/react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import {
   signInWithPopup,
   createUserWithEmailAndPassword,

@@ -24,7 +24,7 @@ import SearchInput from '../../features/search/components/SearchInput';
 import useGetQuerySearchTerm from '../../features/search/hooks/useGetQuerySearchTerm';
 import { removeFromLocalStorage } from '../../helper/localStorage';
 import SignOut from '../../features/users/utils/SignOut';
-import ErrorMessage from './ErrorMessage';
+// import ErrorMessage from './ErrorMessage';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Header = () => {
   const {
     profileData,
     profileDataLoading: loading,
-    profileDataErr: err,
+    // profileDataErr: err,
   } = useSelector(state => state.profileData);
 
   let currentUserProfile = null;
