@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@wcj/markdown-style": "^1.0.25",
+    "dotenv": "^16.3.1",
     "firebase": "^9.22.0",
     "framer-motion": "^10.12.16",
     "highlight.js": "^11.8.0",
