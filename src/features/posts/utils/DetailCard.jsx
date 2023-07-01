@@ -101,8 +101,8 @@ const DetailCard = ({
           <HStack onClick={onClick}>
             <AiOutlineMessage size={25} color={colorTertiary} />
             <Text fontSize='md' fontWeight='medium'>
-              {comments.length} comment
-              {comments.length > 1 || comments.length === 0 ? 's' : ''}
+              {comments} comment
+              {comments > 1 || comments.length === 0 ? 's' : ''}
             </Text>
           </HStack>
         </HStack>

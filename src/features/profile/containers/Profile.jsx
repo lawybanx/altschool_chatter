@@ -6,6 +6,7 @@ import { useAuth } from '../../../context/auth';
 import ProfileBioCard from '../components/ProfileBioCard';
 import PostItem from '../../posts/components/PostItem';
 import Error from '../../../shared/components/Error';
+import { calcTotalDiscussion } from '../../comments/utils/calculateTotal';
 
 const Profile = () => {
   const location = useLocation();
@@ -33,7 +34,7 @@ const Profile = () => {
   if (!currentUserProfile && !profileDataLoading) {
     return <Error />;
   }
-  
+
   if (modifiedData) {
     userPosts = modifiedData
       .filter(
@@ -50,7 +51,10 @@ const Profile = () => {
         <Box maxW='1000px' mx='auto'>
           <ProfileBioCard profileData={currentUserProfile} />
           <Flex mt='2rem'>
-            <Box flex={{ base: 'unset', md: '2' }} borderRadius='5px' w='100%'
+            <Box
+              flex={{ base: 'unset', md: '2' }}
+              borderRadius='5px'
+              w='100%'
               px='1rem'
             >
               {userPosts &&
@@ -69,6 +73,7 @@ const Profile = () => {
                     userId={postData.userId}
                     currentUserId={user?.userId}
                     currentUserProfile={currentUserProfile}
+                    comments={calcTotalDiscussion(postData.comments)}
                     bookmark={postData.bookmark}
                     alreadyBookmarked={postData.bookmark?.includes(
                       user?.userId
