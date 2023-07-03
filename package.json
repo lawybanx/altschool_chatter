@@ -1,5 +1,5 @@
 {
-  "name": "chatter2.0",
+  "name": "altschool_chatter",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,13 +11,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^29.5.2",
-    "@types/node": "^20.3.3",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.36",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
-    "@uiw/react-markdown-preview": "^4.1.13",
     "@wcj/markdown-style": "^1.0.25",
-    "dotenv": "^16.3.1",
     "firebase": "^9.22.0",
     "framer-motion": "^10.12.16",
     "highlight.js": "^11.8.0",
@@ -32,7 +30,7 @@
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "showdown": "^2.1.0",
-    "typescript": "^5.1.6",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -58,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
+    "@types/markdown-it": "^12.2.3",
+    "@types/showdown": "^2.0.1"
   }
 }
