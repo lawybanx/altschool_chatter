@@ -1,6 +1,10 @@
 import React from 'react';
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import MarkdownPreview from '@uiw/react-markdown-preview';
+import remarkGemoji from 'remark-gemoji';
+import remarkTypograf from '@mavrin/remark-typograf';
+import remarkIns from 'remark-ins';
+import remarkSubSuper from 'remark-sub-super';
 
 const MarkdownRenderer = ({ content }) => {
   const theme = useColorModeValue('light', 'dark');
@@ -15,6 +19,12 @@ const MarkdownRenderer = ({ content }) => {
         style={{
           padding: '1rem 2rem',
         }}
+        remarkPlugins={[
+          remarkGemoji,
+          remarkTypograf,
+          remarkIns,
+          // remarkSubSuper,
+        ]}
       />
     </Box>
   );
