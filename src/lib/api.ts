@@ -52,6 +52,7 @@ export const createPost = async (postData: PostData): Promise<void> => {
     readTime:
       postData.MDEValue &&
       Math.ceil(postData.MDEValue.trim().split(/\s+/).length / 200),
+    views: 0,
   });
 };
 

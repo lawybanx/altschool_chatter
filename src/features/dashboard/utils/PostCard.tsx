@@ -26,7 +26,7 @@ interface PostCardProps {
   updatedAt: { seconds: number };
   likes: string[];
   comments: number;
-  views?: string[];
+  views?: number;
   bookmark: string[];
   username: string;
   id: string;
@@ -96,7 +96,7 @@ const PostCard: React.FC<PostCardProps> = ({
                 </HStack>
                 <HStack mr={2}>
                   <Icon as={FiEye} />
-                  <Text>{(views && views.length) || 0}</Text>
+                  <Text>{views && views / 2}</Text>
                 </HStack>
               </>
             )}

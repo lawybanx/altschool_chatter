@@ -46,7 +46,7 @@ const Posts: React.FC = () => {
               updatedAt={post.updatedAt}
               likes={post.likes}
               comments={calcTotalDiscussion(post.comments)}
-              // views={null}
+              views={post.views}
               bookmark={post.bookmark}
               username={post.username}
               id={post.id}

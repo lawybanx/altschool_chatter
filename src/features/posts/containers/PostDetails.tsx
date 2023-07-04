@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import DetailContent from '../components/DetailContent';
 import { useAuth } from '../../../context/auth';
 import { getUserProfileData } from '../../../helper/getUserProfileData';
-// import { calcTotalDiscussion } from '../../comments/utils/calculateTotal';
 import { RootState } from '../../../types/rootState.types';
 import { PostData } from '../../../types/postData.types';
+import { addView } from '../../../lib/api';
 
 const PostDetails: React.FC = () => {
   const { title } = useParams<{ title: string }>();
@@ -16,6 +16,10 @@ const PostDetails: React.FC = () => {
   // get postId from (title + postId)
   const param = title!.split('_');
   const postId = param[param.length - 1];
+
+  useEffect(() => {
+    addView(postId);
+  }, [postId]);
 
   const {
     modifiedData,
