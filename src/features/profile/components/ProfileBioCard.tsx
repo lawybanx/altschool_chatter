@@ -52,7 +52,7 @@ interface ProfileBioCardProps {
     name: string;
     bio: string;
     location: string;
-    createdAt: number;
+    createdAt: string;
     website: string;
     github: string;
     twitter: string;

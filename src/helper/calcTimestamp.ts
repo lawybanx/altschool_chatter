@@ -24,13 +24,30 @@ export const showEditedDate = (
 ): boolean => {
   // const reg = /\d+/;
   const postedDate = +dateFormat(createdAt);
-  const editedDate = +dateFormat(updatedAt);  
+  const editedDate = +dateFormat(updatedAt);
   return postedDate < editedDate;
 };
 
-export const joinOnDate = (createdAt: number): string => {
-  const date = new Date(createdAt).toDateString().split(' ').slice(1, 4);
-  return [date[0], +date[1] + ',', date[2]].join(' ');
+export const joinOnDate = (createdAt: string): string => {
+  let date: string;
+
+  if (createdAt.length === 13) {
+    // Date provided as a timestamp in milliseconds (e.g., created using Google provider)
+    date = new Date(parseInt(createdAt)).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  } else {
+    // Date provided in UTC format (e.g., created using email/password provider)
+    date = new Date(createdAt).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+  }
+
+  return date;
 };
 
 export const displayDate = (timeStamp: { seconds: number }): string => {
