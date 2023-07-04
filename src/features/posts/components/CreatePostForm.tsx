@@ -126,7 +126,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
           {!isToEdit && (
             <SecondaryBtn
               onClick={() => onSubmit(draftPostHandler)}
-              isLoading={savingDraft || uploadingImg}
+              isLoading={savingDraft}
               isLoadingText='Saving draft'
               disabled={publishing || uploadingImg}
             >
@@ -139,7 +139,7 @@ const CreatePostForm: React.FC<CreatePostFormProps> = ({
             onClick={() =>
               onSubmit(isToEdit ? editPostHandler : publishPostHandler)
             }
-            isLoading={publishing || uploadingImg}
+            isLoading={publishing}
             isLoadingText='Publishing'
             disabled={uploadingImg || !postTitle || savingDraft}
           >
