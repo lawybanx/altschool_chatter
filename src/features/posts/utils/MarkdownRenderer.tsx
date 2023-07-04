@@ -1,43 +1,28 @@
 import React from 'react';
-import { Box, useColorModeValue } from '@chakra-ui/react';
-import MarkdownIt from 'markdown-it';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
-import '@wcj/markdown-style';
+import { useColorModeValue } from '@chakra-ui/react';
+import MarkdownPreview from '@uiw/react-markdown-preview';
+import remarkGemoji from 'remark-gemoji';
+import remarkTypograf from '@mavrin/remark-typograf';
+import remarkIns from 'remark-ins';
 
 interface MarkdownRendererProps {
-  content: string | any;
+  content?: string;
 }
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
-  const markdown = new MarkdownIt({
-    html: true,
-    linkify: true,
-    typographer: true,
-    highlight: function (str, lang) {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return hljs.highlight(str, { language: lang }).value;
-        } catch (__) {}
-      }
-
-      return ''; // use external default escaping
-    },
-  });
+  const theme = useColorModeValue('light', 'dark');
 
   return (
-    <Box>
-      {React.createElement('markdown-style', {
-        theme: useColorModeValue('light', 'dark'),
-        children: (
-          <Box
-            as='div'
-            p={{ base: '1rem', md: '1.5rem' }}
-            dangerouslySetInnerHTML={{ __html: markdown.render(content) }}
-          />
-        ),
-      })}
-    </Box>
+    <MarkdownPreview
+      source={content}
+      wrapperElement={{
+        'data-color-mode': theme,
+      }}
+      style={{
+        padding: '1.5rem',
+      }}
+      remarkPlugins={[remarkGemoji, remarkTypograf, remarkIns]}
+    />
   );
 };
 
