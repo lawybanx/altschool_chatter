@@ -4,7 +4,6 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAuth } from '../../../context/auth';
 import styled from '@emotion/styled';
-import { css, SerializedStyles } from '@emotion/react';
 import { RootState } from '../../../types/rootState.types';
 
 interface MenuTextProps {
@@ -57,7 +56,7 @@ const Menu: React.FC<MenuProps> = ({
   const hoverColor = useColorModeValue('rgb(47 58 178)', 'rgb(165, 180, 252)');
   const color = useColorModeValue('rgb(64, 64, 64)', 'rgb(212, 212, 212)');
 
-  const menuItemStyles: SerializedStyles = css`
+  const MenuItem = styled(NavLink)`
     padding: 0.5rem;
     display: block;
     cursor: pointer;
@@ -71,72 +70,53 @@ const Menu: React.FC<MenuProps> = ({
     }
   `;
 
+  const activeLink = (isActive: boolean) => {
+    return isActive
+      ? {
+          background: bgColor,
+          color: hoverColor,
+        }
+      : {};
+  };
+
   return (
     <Box w='230px' display={{ base: 'none', md: 'block' }}>
       <MenuItem
         to='/dashboard'
-        css={menuItemStyles.toString()}
-        // activeClassName='active'
-        style={{
-          background: location.pathname === '/dashboard' ? bgColor : '',
-        }}
-        // exact
+        style={() => activeLink(location.pathname === '/dashboard')}
       >
         <MenuText title='Posts' count={totalPublishedPosts} />
       </MenuItem>
 
       <MenuItem
         to='/dashboard/drafts'
-        css={menuItemStyles.toString()}
-        style={{
-          background: location.pathname === '/dashboard/drafts' ? bgColor : '',
-        }}
-        // activeClassName='active'
+        style={({ isActive }) => activeLink(isActive)}
       >
         <MenuText title='Drafts' count={totalDraftPosts} />
       </MenuItem>
 
       <MenuItem
         to='/dashboard/following'
-        css={menuItemStyles.toString()}
-        style={{
-          background:
-            location.pathname === '/dashboard/following' ? bgColor : '',
-        }}
-        // activeClassName='active'
+        style={({ isActive }) => activeLink(isActive)}
       >
         <MenuText title='Following' count={totalFollowing} />
       </MenuItem>
 
       <MenuItem
         to='/dashboard/followers'
-        css={menuItemStyles.toString()}
-        style={{
-          background:
-            location.pathname === '/dashboard/followers' ? bgColor : '',
-        }}
-        // activeClassName='active'
+        style={({ isActive }) => activeLink(isActive)}
       >
         <MenuText title='Followers' count={totalFollowers} />
       </MenuItem>
 
       <MenuItem
         to='/dashboard/following_tags'
-        css={menuItemStyles.toString()}
-        style={{
-          background:
-            location.pathname === '/dashboard/following_tags' ? bgColor : '',
-        }}
-        // activeClassName='active'
+        style={({ isActive }) => activeLink(isActive)}
       >
         <MenuText title='Following tags' count={totalFollowingTags} />
       </MenuItem>
     </Box>
   );
 };
-
-const MenuItem = styled(NavLink)`
-  ${({ css }: { css?: string }) => css}
-`;
 
 export default Menu;

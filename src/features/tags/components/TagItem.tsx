@@ -42,7 +42,7 @@ const TagItem: React.FC<TagItemProps> = ({
   return (
     <Box
       borderRadius='5px'
-      bg={useColorModeValue('#f1f5f9', '#1e293b')}
+      bg={useColorModeValue('#fff', '#1e293b')}
       className='shadow'
       p={{ base: '.5rem', md: '1.5rem' }}
     >
