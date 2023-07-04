@@ -19,7 +19,7 @@ const TrendingTags: React.FC = () => {
   const {
     modifiedData,
     modifiedDataLoading: loading,
-    modifiedDataErr: err,
+    // modifiedDataErr: err,
   } = useSelector((state: any) => state.modifiedData);
 
   const popularTags = getPopularTags(modifiedData);

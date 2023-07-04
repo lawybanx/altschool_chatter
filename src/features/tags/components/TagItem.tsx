@@ -27,7 +27,10 @@ const TagItem: React.FC<TagItemProps> = ({
   const user = useAuth();
   const userId = user?.userId;
 
-  const { followTagHandler, loading } = useFollowTag(profileData);
+  const {
+    followTagHandler,
+    // loading
+  } = useFollowTag(profileData);
 
   const handleClickFollow = () => followTagHandler(tagName);
 
