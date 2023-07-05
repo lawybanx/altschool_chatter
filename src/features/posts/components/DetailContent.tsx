@@ -124,7 +124,7 @@ const DetailContent: React.FC<DetailContentProps> = ({
 
       {/* custom avatar, user name, date, readtime */}
       <Flex align='center' pb='1rem'>
-        <HStack spacing='1rem' px='1rem'>
+        <HStack display='flex' spacing='1rem' px='1rem' wrap='wrap'>
           <CustomAvatar
             profile={profile}
             size='40px'
@@ -160,7 +160,7 @@ const DetailContent: React.FC<DetailContentProps> = ({
             </>
           )}
           {/* manage post if user */}
-          {isAuthor && <ManagePost postId={id} />}
+          <Flex>{isAuthor && <ManagePost postId={id} />}</Flex>
         </HStack>
       </Flex>
       <Box px='1rem'>
