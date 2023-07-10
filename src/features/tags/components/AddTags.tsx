@@ -2,28 +2,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import Tag from '../utils/Tag';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Flex, Input, Wrap, WrapItem } from '@chakra-ui/react';
-// import tagSuggestions from './tagSuggestion.json';
 import { getPopularTags } from '../../../helper/getPopularTags';
 import { setTagsToStore } from '../../../store/post/postData';
 import { nanoid } from '@reduxjs/toolkit';
 import { VscChromeClose } from 'react-icons/vsc';
 import useClickOutside from '../hooks/useClickOutside';
+import { TagData } from '../../../types/tagData.types';
 
-interface TagData {
-  tagName: string | any;
-  isCustomTag?: boolean;
+interface AddTagsProps {
+  filteredTagsFromLocalStorage: TagData[];
 }
 
-const AddTags: React.FC<{ filteredTagsFromLocalStorage?: TagData[] }> = ({
-  filteredTagsFromLocalStorage,
-}) => {
-  const { modifiedData } = useSelector((state: any) => state.modifiedData);
+const AddTags: React.FC<AddTagsProps> = ({ filteredTagsFromLocalStorage }) => {
+  const { modifiedData } = useSelector(
+    (state: any) => state.modifiedData
+  );
   const tags = getPopularTags(modifiedData);
 
   // states
   const [tagData, setTagData] = useState<TagData[]>(tags);
-  const [filterTagName, setFilterTagName] = useState<string>('');
-  const [focusTagInput, setFocusTagInput] = useState<boolean>(false);
+  const [filterTagName, setFilterTagName] = useState('');
+  const [focusTagInput, setFocusTagInput] = useState(false);
   const [filteredTags, setFilteredTags] = useState<TagData[]>(
     filteredTagsFromLocalStorage || []
   );
@@ -41,9 +40,9 @@ const AddTags: React.FC<{ filteredTagsFromLocalStorage?: TagData[] }> = ({
   useClickOutside(setFocusTagInput, ['suggestion-box', 'tag-input']);
 
   // showing tag suggestion
-  const tagsToShow = (): TagData[] => {
+  const tagsToShow = (): TagData[] | undefined => {
     if (filterTagName === '') {
-      return [];
+      return;
     }
 
     return tagData.filter(tag =>
@@ -73,9 +72,11 @@ const AddTags: React.FC<{ filteredTagsFromLocalStorage?: TagData[] }> = ({
   const handleAddTag = (tag: TagData) => {
     addToFilteredTags(tag);
     setFilterTagName('');
-    inputTagRef.current?.focus();
+    if (inputTagRef.current) {
+      inputTagRef.current.focus();
+    }
 
-    setTimeout(() => setFocusTagInput(true), 100); // two setState trigger once and doesn't get true
+    setTimeout(() => setFocusTagInput(true), 100); // two setState triggers once and doesn't get true
   };
 
   const handleDeleteTag = (tag: TagData) => {
@@ -90,36 +91,33 @@ const AddTags: React.FC<{ filteredTagsFromLocalStorage?: TagData[] }> = ({
     setTagData(prevArr => [...prevArr, tag]);
   };
 
-  const capitalizeFirstLetter = (input: string) => {
+  const capitalizeFirstLetter = (input: string): string => {
     return input.replace(/\b\w/g, match => match.toUpperCase());
   };
 
   // generating tag icon
   const suggestions = (): JSX.Element[] => {
-    const availableTags = tagsToShow();
+    const tagsToShowList = tagsToShow();
+    if (tagsToShowList) {
+      const alreadyInTag = filteredTags.find(
+        tag => tag.tagName === filterTagName
+      );
 
-    if (availableTags.length === 0) {
-      return [];
+      const transformedTags = alreadyInTag
+        ? [...tagsToShowList]
+        : [{ tagName: filterTagName, isCustomTag: true }, ...tagsToShowList];
+
+      return transformedTags.map(tag => (
+        <WrapItem key={nanoid()}>
+          <Tag onAddTag={() => handleAddTag(tag)} tag={tag} />
+        </WrapItem>
+      ));
     }
-
-    const alreadyInTag = filteredTags.find(
-      tag => tag.tagName === filterTagName
-    );
-
-    const transformedTags = alreadyInTag
-      ? [...availableTags]
-      : [{ tagName: filterTagName, isCustomTag: true }, ...availableTags];
-
-    return transformedTags.map(tag => (
-      <WrapItem key={nanoid()}>
-        <Tag onAddTag={() => handleAddTag(tag)} tag={tag} />
-      </WrapItem>
-    ));
+    return [];
   };
 
-  // showSuggestionBox
-  const showSuggestionBox =
-    focusTagInput && tagsToShow().length > 0 ? 'flex' : 'none';
+  // show suggestion box
+  const showSuggestionBox = focusTagInput && tagsToShow() ? 'flex' : 'none';
 
   const tagInputPlaceHolder = `Add tag ( ${4 - filteredTags.length} )`;
 
