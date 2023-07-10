@@ -48,7 +48,7 @@ const PostDetails = lazy(
   () => import('../../features/posts/containers/PostDetails')
 );
 
-// const Search = lazy(() => import('../features/posts/containers/Search'));
+const Search = lazy(() => import('../../features/search/containers/Search'));
 
 const EditPost = lazy(() => import('../../features/posts/components/EditPost'));
 
@@ -75,6 +75,7 @@ const ConfigRoute = () => {
         <Route path='explore' element={<Explore />} />
         <Route path='bookmarks' element={<Bookmarks />} />
         <Route path='tag/:tagname' element={<TagDetails />} />
+        <Route path='search' element={<Search />} />
       </Route>
 
       <Route element={<DefaultLayout />}>
@@ -91,7 +92,6 @@ const ConfigRoute = () => {
 
         <Route path='delete-comment' element={<DeleteComment />} />
         <Route path='edit-comment' element={<EditComment />} />
-        {/* <Route path='search' element={<Search />} /> */}
         {/* <Route path='contact' element={<Contact />} /> */}
         {/* <Route path='about' element={<About />} /> */}
       </Route>

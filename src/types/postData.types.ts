@@ -3,6 +3,7 @@ import { TagData } from './tagData.types';
 import { TimestampObject } from './timestampObject.types';
 
 export type PostData = {
+  [x: string]: any;
   id: string;
   MDEValue?: string;
   cvImg?: string;
