@@ -96,7 +96,7 @@ const PostCard: React.FC<PostCardProps> = ({
                 </HStack>
                 <HStack mr={2}>
                   <Icon as={FiEye} />
-                  <Text>{views && views / 2}</Text>
+                  <Text>{views || 0}</Text>
                 </HStack>
               </>
             )}
