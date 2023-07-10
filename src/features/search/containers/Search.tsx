@@ -11,6 +11,7 @@ import SearchInput from '../components/SearchInput';
 import { RootState } from '../../../types/rootState.types';
 import { PostData } from '../../../types/postData.types';
 import { ProfileData } from '../../../types/profileData.types';
+import { TagData } from '../../../types/tagData.types';
 
 const Search: React.FC = () => {
   const user = useAuth();
@@ -39,7 +40,11 @@ const Search: React.FC = () => {
   const searchedPostData: PostData[] | null = allPostData?.filter(
     (postData: PostData) =>
       postData.title.toLowerCase().includes(querySearchTerm.toLowerCase()) ||
-      postData.name.toLowerCase().includes(querySearchTerm.toLowerCase())
+      postData.name.toLowerCase().includes(querySearchTerm.toLowerCase()) ||
+      // check post tags
+      postData.tags.some((tag: TagData) =>
+        tag.tagName.toLowerCase().includes(querySearchTerm.toLowerCase())
+      )
   );
 
   const searchTermColor = useColorModeValue(
