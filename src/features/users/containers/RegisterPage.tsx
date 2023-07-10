@@ -112,7 +112,7 @@ const RegisterPage = () => {
     >
       <Image
         alt='Login Image'
-        src={login}
+        src='https://res.cloudinary.com/dbrukzcby/image/upload/v1689020151/login_ovmny9.png'
         objectFit='cover'
         width={{ base: '100%', md: '50%' }}
         h={{ base: '50%', md: '100%' }}
